@@ -1,8 +1,7 @@
 # coding=utf-8
 
-from flask import Flask, jsonify
+from flask import Flask
 from flask_pymongo import PyMongo
-import json
 
 app = Flask(__name__)
 
@@ -24,6 +23,7 @@ def create_project():
     project.insert(data)
     return 'Added!'
 
+
 @app.route('/')
 def home():
     projects = mongo.db.projects
@@ -31,7 +31,6 @@ def home():
     for q in projects.find():
         output.append(q)
     return str(output)
-
 
 
 if __name__ == "__main__":
